@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ProductVersionManagerBackend.Entities
 {
-    public class ProductVersion
+    public class ProductVersion: IId
     {
-        public int ProductVersionId { get; set; }
+        public int Id { get; set; }
         [Required]
         [StringLength(30)]
         public string Name { get; set; }
