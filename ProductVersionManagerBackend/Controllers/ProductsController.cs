@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using ProductVersionManagerBackend.DTOs;
 using ProductVersionManagerBackend.Entities;
 using ProductVersionManagerBackend.Services;
+using ProductVersionManagerBackend.Services.Products;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace ProductVersionManagerBackend.Controllers
     [ApiController]
     public class ProductsController : CustomControllerBase<Product>
     {
-        public ProductsController(IServiceBase<Product> service, IMapper mapper) : base(service, mapper)
+        public ProductsController(IProductService service, IMapper mapper) : base(service, mapper)
         {
         }
 
@@ -35,6 +36,18 @@ namespace ProductVersionManagerBackend.Controllers
         public async Task<ActionResult> Post(CreateProductDTO createProduct)
         {
             return await Post<ProductDTO, CreateProductDTO>(createProduct, "GetProduct");
+        }
+
+        [HttpPut("{id:int}")]
+        public async Task<ActionResult> Put(int id, CreateProductDTO createProduct)
+        {
+            return await Put<CreateProductDTO>(id, createProduct);
+        }
+
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult> Put(int id)
+        {
+            return await Delete(id);
         }
     }
 }

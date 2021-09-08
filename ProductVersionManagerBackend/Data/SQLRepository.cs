@@ -17,7 +17,7 @@ namespace ProductVersionManagerBackend.Data
             this.context = context;
         }
 
-        public async Task<T> AddAsync(T entity)
+        public virtual async Task<T> AddAsync(T entity)
         {
             try
             {
@@ -31,7 +31,7 @@ namespace ProductVersionManagerBackend.Data
             }
         }
 
-        public async Task<bool> DeleteAsync(T entity)
+        public virtual async Task<bool> DeleteAsync(T entity)
         {
             try
             {
@@ -45,7 +45,7 @@ namespace ProductVersionManagerBackend.Data
             }
         }
 
-        public async Task<List<T>> GetAsync()
+        public virtual async Task<List<T>> GetAsync()
         {
             return await Entities.ToListAsync();
         }
@@ -55,7 +55,7 @@ namespace ProductVersionManagerBackend.Data
             return await Entities.FirstOrDefaultAsync(t => t.Id == id);
         }
 
-        public async Task<T> UpdateAsync(T entity)
+        public virtual async Task<T> UpdateAsync(T entity)
         {
             try
             {
