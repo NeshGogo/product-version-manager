@@ -11,10 +11,12 @@ using Microsoft.OpenApi.Models;
 using ProductVersionManagerBackend.Data;
 using ProductVersionManagerBackend.Data.products;
 using ProductVersionManagerBackend.Services.Products;
+using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ProductVersionManagerBackend.Helpers;
 
 namespace ProductVersionManagerBackend
 {
@@ -32,7 +34,11 @@ namespace ProductVersionManagerBackend
         {
             services.AddDbContext<AppDbContext>(options => 
                 options.UseSqlServer(Configuration.GetConnectionString("AppConnectionString")));
-            
+
+            services.AddAutoMapper(typeof(Startup));
+            services.AddSingleton(provide => new MapperConfiguration(config => 
+                config.AddProfile(new AutomapperProfiles())));
+
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IProductService, ProductService>();
 
