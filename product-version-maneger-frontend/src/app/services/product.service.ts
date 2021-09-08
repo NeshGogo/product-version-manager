@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpResponse } from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { Product } from '../models/product';
+import { Pagination } from '../models/pagination';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,8 @@ export class ProductService {
 
   constructor(private http: HttpClient) {}
 
-  get(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.URL);
+  get(pagination?:Pagination): Observable<HttpResponse<Product[]>> {
+    return this.http.get<Product[]>(`${this.URL}?page=${pagination?.page}`, {observe: 'response'});
   }
 
   set(product: Product): Observable<Product> {

@@ -11,8 +11,25 @@
     />
   </div>
 </section>
-<section class="mt-5 mb-4">
-  <a [routerLink]="['/products/create']" class="btn btn-success rounded-circle fs-5 " role="button" aria-disabled="true">+</a>
+<section class="mt-5 mb-4 d-flex justify-content-between">
+  <div>
+    <a [routerLink]="['/products/create']" class="btn btn-success rounded-circle fs-5 " role="button" aria-disabled="true">+</a>
+  </div>
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item">
+        <a class="page-link" (click)="previousPage()" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      <li class="page-item" *ngFor="let item of pagination.pages"><a class="page-link" >{{item}}</a></li>
+      <li class="page-item">
+        <a class="page-link" (click)="nextPage()" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
 </section>
 <section class="container" >
   <div class="row">

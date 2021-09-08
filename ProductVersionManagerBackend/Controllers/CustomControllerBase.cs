@@ -1,6 +1,9 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using ProductVersionManagerBackend.DTOs;
 using ProductVersionManagerBackend.Entities;
+using ProductVersionManagerBackend.Helpers;
 using ProductVersionManagerBackend.Services;
 using System;
 using System.Collections.Generic;
@@ -18,6 +21,19 @@ namespace ProductVersionManagerBackend.Controllers
         {
             this.service = service;
             this.mapper = mapper;
+        }
+
+        protected async Task<List<TDTO>> Get<TDTO>(PaginationDTO pagination)
+        {
+            var queryable = service.Get();
+            return await Get<TDTO>(pagination, queryable);
+        }
+
+        protected async Task<List<TDTO>> Get<TDTO>(PaginationDTO pagination, IQueryable<T> queryable)
+        {
+            await HttpContext.InsertPaginationParams(queryable, pagination.RecordPerPage);
+            var entities = await queryable.Pagination(pagination).ToListAsync();
+            return mapper.Map<List<TDTO>>(entities);
         }
 
         protected async Task<ActionResult<List<TDTO>>> Get<TDTO>() where TDTO : class

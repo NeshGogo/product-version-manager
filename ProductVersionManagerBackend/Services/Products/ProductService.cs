@@ -1,4 +1,5 @@
-﻿using ProductVersionManagerBackend.Data.products;
+﻿using Microsoft.EntityFrameworkCore;
+using ProductVersionManagerBackend.Data.products;
 using ProductVersionManagerBackend.Entities;
 using System;
 using System.Collections.Generic;
@@ -28,7 +29,12 @@ namespace ProductVersionManagerBackend.Services.Products
 
         public async Task<List<Product>> GetAsync()
         {
-            return await repository.GetAsync();
+            return await repository.Get().ToListAsync();
+        }
+
+        public IQueryable<Product> Get()
+        {
+            return repository.Get();
         }
 
         public async Task<Product> GetAsync(int id)

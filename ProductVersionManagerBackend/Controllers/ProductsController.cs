@@ -20,10 +20,11 @@ namespace ProductVersionManagerBackend.Controllers
         {
         }
 
+      
         [HttpGet]
-        public async Task<ActionResult<List<ProductDTO>>> Get()
+        public async Task<ActionResult<List<ProductDTO>>> Get([FromQuery]PaginationDTO pagination)
         {
-            return await Get<ProductDTO>();
+            return await Get<ProductDTO>(pagination);
         }
 
         [HttpGet("{id:int}", Name = "GetProduct")]

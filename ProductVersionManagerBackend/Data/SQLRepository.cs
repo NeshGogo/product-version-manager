@@ -45,9 +45,9 @@ namespace ProductVersionManagerBackend.Data
             }
         }
 
-        public virtual async Task<List<T>> GetAsync()
+        public virtual  IQueryable<T> Get()
         {
-            return await Entities.ToListAsync();
+            return Entities;
         }
 
         public async Task<T> GetAsync(int id)

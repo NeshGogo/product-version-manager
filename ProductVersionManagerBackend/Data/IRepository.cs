@@ -7,7 +7,7 @@ namespace ProductVersionManagerBackend.Data
 {
     public interface IRepository<T> where T : class
     {
-        Task<List<T>> GetAsync();
+        IQueryable<T> Get();
         Task<T> GetAsync(int id);
         Task<T> AddAsync(T entity);
         Task<T> UpdateAsync(T entity);
