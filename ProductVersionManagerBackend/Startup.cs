@@ -54,6 +54,7 @@ namespace ProductVersionManagerBackend
         {
             if (env.IsDevelopment())
             {
+                app.UseCors(c => c.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ProductVersionManagerBackend v1"));

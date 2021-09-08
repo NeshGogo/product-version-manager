@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Product } from 'src/app/models/product';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-product-form',
@@ -17,7 +18,7 @@ export class ProductFormComponent implements OnInit {
     seller: [null, [Validators.required]],
   });
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private productService: ProductService) { }
 
   ngOnInit(): void {
   }
@@ -26,10 +27,9 @@ export class ProductFormComponent implements OnInit {
     event.preventDefault();
     if (!this.form.valid) return this.form.markAsTouched();
     const product: Product = this.form.value;
-    console.log(product);
     this.DisplayAleter();
-    //this.productService.set(product).subscribe((product) => this.inserted.emit(product));
-    //this.form.reset();
+    this.productService.set(product).subscribe((product) => console.log(product));
+    this.form.reset();
   }
   private DisplayAleter(){
     this.showAlert = true;
