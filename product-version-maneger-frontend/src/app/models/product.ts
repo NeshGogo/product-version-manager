@@ -4,4 +4,5 @@ export interface Product{
   brand: string;
   price: number;
   seller: string;
+  date?: Date;
 }

@@ -1,0 +1,23 @@
+<section class="mt-3 mb-4">
+  <h2 class="text-center">Lista de productos</h2>
+</section>
+<section class="d-flex justify-content-center">
+  <div class="w-50">
+    <input
+      type="text"
+      [formControl]="filter"
+      class="form-control"
+      placeholder="Que desea buscar?"
+    />
+  </div>
+</section>
+<section class="mt-5 mb-4">
+  <a [routerLink]="['/products/create']" class="btn btn-success rounded-circle fs-5 " role="button" aria-disabled="true">+</a>
+</section>
+<section class="container" >
+  <div class="row">
+    <div class="col mb-3" *ngFor="let product of products">
+      <app-product-item [product]="product"></app-product-item>
+    </div>
+  </div>
+</section>

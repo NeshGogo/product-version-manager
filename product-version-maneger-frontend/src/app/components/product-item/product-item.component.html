@@ -1,0 +1,11 @@
+<div class="card" style="width: 18rem;">
+ <div class="text-center">
+  <img src="../../../assets/img/icons8-product-48.png" class="img" alt="icon-product">
+ </div>
+  <div class="card-body">
+    <h5 class="card-title text-center">{{product?.name}}, {{product?.brand}}</h5>
+    <p class="card-text m-0">Fecha: {{product?.date | date}}</p>
+    <p class="card-text mb-4">Vendedor: {{product?.seller}}</p>
+    <a [routerLink]="['/products/detail',product?.id]" class="btn btn-primary btn-sm w-100">Ver detalle</a>
+  </div>
+</div>
