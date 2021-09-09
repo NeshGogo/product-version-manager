@@ -54,4 +54,10 @@ export class ProductListComponent implements OnInit {
       console.log(this.pagination);
     }
   }
+
+  goToPage(page: number){
+    if(this.pagination.page === page)return;
+    this.pagination.page = page;
+    this.fetchData();
+  }
 }
