@@ -19,6 +19,7 @@ namespace ProductVersionManagerBackend.Services.Products
 
         public async Task<Product> AddAsync(Product entity)
         {
+            entity.Date = DateTime.Now;
             return await repository.AddAsync(entity);
         }
 
