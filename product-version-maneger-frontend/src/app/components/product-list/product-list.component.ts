@@ -4,6 +4,7 @@ import { FormControl } from '@angular/forms';
 import { Pagination } from 'src/app/models/pagination';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
+import {debounceTime} from 'rxjs/operators';
 
 @Component({
   selector: 'app-product-list',
@@ -19,23 +20,38 @@ export class ProductListComponent implements OnInit {
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
+    this.initFilter();
     this.fetchData();
   }
 
   private fetchData() {
     this.productService.get(this.pagination).subscribe((response) => {
       this.buildPagination(response.headers);
-      console.log(this.pagination.pages);
       this.products = response.body || [];
     });
   }
 
   private buildPagination(headers: HttpHeaders) {
     this.pagination.pages = [];
-    const pages = Number(headers.get('page'));
-    for (let index = 0; index <= pages + 1; index++) {
+    const pages = Number(headers.get('Pages'));
+    for (let index = 0; index < pages; index++) {
       this.pagination.pages.push(index + 1);
     }
+  }
+
+  private initFilter(){
+    this.filter.valueChanges
+    .pipe(debounceTime(300))
+    .subscribe( val => {
+      if(!val || val === ''){
+        this.fetchData();
+        return;
+      }
+      this.productService.filter(val,this.pagination).subscribe(response => {
+        this.buildPagination(response.headers);
+        this.products = response.body || [];
+      })
+    })
   }
 
   nextPage() {

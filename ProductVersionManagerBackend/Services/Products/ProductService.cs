@@ -46,5 +46,15 @@ namespace ProductVersionManagerBackend.Services.Products
         {
             return await repository.UpdateAsync(entity);
         }
+
+        public IQueryable<Product> Filter(string value)
+        {
+            return repository.Get()
+                 .Where(p =>
+                     p.Name.Contains(value) ||
+                     p.Brand.Contains(value) ||
+                     p.Seller.Contains(value) ||
+                     p.Price.ToString() == value);
+        }
     }
 }

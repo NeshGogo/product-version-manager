@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ProductVersionManagerBackend.DTOs
+namespace ProductVersionManagerBackend.Helpers
 {
     public static class HttpContextExtension
     {

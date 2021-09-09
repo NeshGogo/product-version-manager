@@ -20,4 +20,8 @@ export class ProductService {
   set(product: Product): Observable<Product> {
     return this.http.post<Product>(this.URL, product);
   }
+
+  filter(value: string, pagination?:Pagination): Observable<HttpResponse<Product[]>>{
+    return this.http.get<Product[]>(`${this.URL}/${value}?page=${pagination?.page}`, {observe: 'response'});
+  }
 }

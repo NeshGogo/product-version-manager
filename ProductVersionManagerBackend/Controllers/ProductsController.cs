@@ -16,8 +16,11 @@ namespace ProductVersionManagerBackend.Controllers
     [ApiController]
     public class ProductsController : CustomControllerBase<Product>
     {
+        private readonly IProductService service;
+
         public ProductsController(IProductService service, IMapper mapper) : base(service, mapper)
         {
+            this.service = service;
         }
 
       
@@ -31,6 +34,13 @@ namespace ProductVersionManagerBackend.Controllers
         public async Task<ActionResult<ProductDTO>> Get(int id)
         {
             return await Get<ProductDTO>(id);
+        }
+
+        [HttpGet("{value}")]
+        public async Task<ActionResult<List<ProductDTO>>> Get(string value, [FromQuery] PaginationDTO pagination)
+        {
+            var products = service.Filter(value);
+            return await Get<ProductDTO>(pagination, products);
         }
 
         [HttpPost]

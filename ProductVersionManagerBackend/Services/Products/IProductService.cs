@@ -8,5 +8,6 @@ namespace ProductVersionManagerBackend.Services.Products
 {
     public interface IProductService : IServiceBase<Product>
     {
+        IQueryable<Product> Filter(string value);
     }
 }
