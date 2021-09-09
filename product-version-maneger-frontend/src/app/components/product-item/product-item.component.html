@@ -11,7 +11,7 @@
       <span *ngIf="product?.version !== undefined" class="text-warning"
         >V{{ product?.version }},</span
       >
-      {{ product?.name }}, {{ product?.brand }}
+      {{ product?.name }}, {{ product?.brand }} {{ product?.price | currency }}
     </h5>
     <p class="card-text m-0">Fecha: {{ product?.date | date }}</p>
     <p class="card-text mb-4">Vendedor: {{ product?.seller }}</p>

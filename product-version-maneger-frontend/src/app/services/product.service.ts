@@ -31,7 +31,7 @@ export class ProductService {
   }
 
   filter(value: string, pagination?:Pagination): Observable<HttpResponse<Product[]>>{
-    return this.http.get<Product[]>(`${this.URL}/${value}?page=${pagination?.page}`, {observe: 'response'});
+    return this.http.get<Product[]>(`${this.URL}/filter/${value}?page=${pagination?.page}`, {observe: 'response'});
   }
 
   applyVersion(applyVersion: ApplyVersion){

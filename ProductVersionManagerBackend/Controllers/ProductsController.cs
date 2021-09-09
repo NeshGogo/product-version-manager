@@ -41,7 +41,7 @@ namespace ProductVersionManagerBackend.Controllers
             return await Get<ProductDTO>(id);
         }
 
-        [HttpGet("{value}")]
+        [HttpGet("filter/{value}")]
         public async Task<ActionResult<List<ProductDTO>>> Get(string value, [FromQuery] PaginationDTO pagination)
         {
             var products = service.Filter(value);
