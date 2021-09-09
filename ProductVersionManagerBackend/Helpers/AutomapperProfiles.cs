@@ -12,11 +12,12 @@ namespace ProductVersionManagerBackend.Helpers
     {
         public AutomapperProfiles()
         {
-            CreateMap<Product, ProductDTO>();
+            CreateMap<Product, ProductDTO>().ReverseMap();
             CreateMap<CreateProductDTO, Product>();
-            CreateMap<ProductVersionDTO, ProductVersion>();
+            CreateMap<ProductVersionDTO, ProductVersion>().ReverseMap();
             CreateMap<Product, ProductVersion>()
-                .ForMember(pv => pv.ProductId, options => options.MapFrom(p => p.Id));
+                .ForMember(pv => pv.ProductId, options => options.MapFrom(p => p.Id))
+                .ForMember(pv => pv.Id, options => options.Ignore());
             CreateMap<ProductVersion, Product>()
                 .ForMember(pv => pv.Id, options => options.MapFrom(p => p.ProductId));
         }

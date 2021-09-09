@@ -6,17 +6,37 @@ import { ProductListComponent } from './components/product-list/product-list.com
 
 const routes: Routes = [
   {
-    path: 'products',
-    component: ProductListComponent
+    path: '',
+    children: [
+      {
+        path:'',
+        redirectTo: 'products',
+        pathMatch: 'full'
+      },
+      {
+        path: 'products',
+        children: [
+          {
+            path: '',
+            component: ProductListComponent
+          },
+          {
+            path: 'create',
+            component: ProductFormComponent
+          },
+          {
+            path: 'create/:id',
+            component: ProductFormComponent
+          },
+          {
+            path: 'detail/:id',
+            component: ProductDetailComponent
+          },
+        ]
+      },
+    ]
   },
-  {
-    path: 'products/create',
-    component: ProductFormComponent
-  },
-  {
-    path: 'products/detail/:id',
-    component: ProductDetailComponent
-  },
+  
 ];
 
 @NgModule({

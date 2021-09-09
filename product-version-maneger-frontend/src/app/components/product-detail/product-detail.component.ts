@@ -24,9 +24,11 @@ export class ProductDetailComponent implements OnInit {
   private init() {
     this.route.params.subscribe((params) => {
       this.productId = params.id;
-      this.productService
-        .geById(this.productId)
-        .subscribe((product) => {this.product = product; console.log(product)});
+      this.productService.geById(this.productId).subscribe((product) => {
+        product.productVersions = product.productVersions?.reverse();
+        this.product = product;
+        console.log(product)
+      });
     });
   }
 }

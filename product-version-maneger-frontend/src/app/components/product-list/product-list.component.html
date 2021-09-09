@@ -13,7 +13,25 @@
 </section>
 <section class="mt-5 mb-4 d-flex justify-content-between">
   <div>
-    <a [routerLink]="['/products/create']" class="btn btn-success  fs-5 " role="button" aria-disabled="true">+</a>
+    <a
+      [routerLink]="['/products/create']"
+      class="btn btn-success"
+      role="button"
+      aria-disabled="true"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="25"
+        height="25"
+        fill="currentColor"
+        class="bi bi-plus"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+        />
+      </svg>
+    </a>
   </div>
   <nav aria-label="Page navigation">
     <ul class="pagination">
@@ -22,8 +40,11 @@
           <span aria-hidden="true">&laquo;</span>
         </a>
       </li>
-      <li [class]="pagination.page === item? 'page-item active':'page-item'"  *ngFor="let item of pagination.pages">
-        <a class="page-link" (click)="goToPage(item)">{{item}}</a>
+      <li
+        [class]="pagination.page === item ? 'page-item active' : 'page-item'"
+        *ngFor="let item of pagination.pages"
+      >
+        <a class="page-link" (click)="goToPage(item)">{{ item }}</a>
       </li>
       <li class="page-item">
         <a class="page-link" (click)="nextPage()" aria-label="Next">
@@ -33,7 +54,7 @@
     </ul>
   </nav>
 </section>
-<section class="container" >
+<section class="container">
   <div class="row">
     <div class="col mb-3" *ngFor="let product of products">
       <app-product-item [product]="product"></app-product-item>

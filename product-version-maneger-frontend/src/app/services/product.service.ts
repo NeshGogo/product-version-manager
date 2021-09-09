@@ -25,6 +25,10 @@ export class ProductService {
     return this.http.post<Product>(this.URL, product);
   }
 
+  update(id: number, product: Partial<Product>): Observable<Product> {
+    return this.http.put<Product>(`${this.URL}/${id}`, product);
+  }
+
   filter(value: string, pagination?:Pagination): Observable<HttpResponse<Product[]>>{
     return this.http.get<Product[]>(`${this.URL}/${value}?page=${pagination?.page}`, {observe: 'response'});
   }

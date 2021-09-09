@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using ProductVersionManagerBackend.Entities;
 using System;
 using System.Collections.Generic;
@@ -18,14 +19,27 @@ namespace ProductVersionManagerBackend.Data.products
             this.mapper = mapper;
         }
 
+        public override async Task<Product> GetAsync(int id)
+        {
+            return await context.Products
+                .Include(p => p.ProductVersions)
+                .FirstOrDefaultAsync(p => p.Id == id);
+        }
+
         public override async Task<Product> UpdateAsync(Product product)
         {
             try
             {
-                var lastVersion = context.ProductVersions.LastOrDefault(v => v.ProductId == product.Id)?.Version;
-                var productVersion = mapper.Map<ProductVersion>(product);
+                var oldProduct = await context.Products
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync(p => p.Id == product.Id);
+                var lastVersion = context.ProductVersions
+                    .OrderBy(v => v.Id)
+                    .LastOrDefault(v => v.ProductId == product.Id)?.Version;
+                var productVersion = mapper.Map<ProductVersion>(oldProduct);
                 productVersion.Version = lastVersion != null? lastVersion.Value + 1 : 1;
                 await context.ProductVersions.AddAsync(productVersion);
+                product.ModificationDate = DateTime.Now;
                 context.Products.Update(product);
                 await context.SaveChangesAsync();
                 return product;

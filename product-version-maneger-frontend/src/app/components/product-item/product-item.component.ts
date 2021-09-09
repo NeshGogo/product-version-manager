@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Product } from 'src/app/models/product';
 
 @Component({
@@ -9,9 +9,12 @@ import { Product } from 'src/app/models/product';
 export class ProductItemComponent implements OnInit {
   @Input()product: Product | undefined;
   @Input()detailMode: boolean = false;
+  @Output()goToVersion = new EventEmitter<number>();
   constructor() { }
 
   ngOnInit(): void {
   }
-
+  sendToVersion(id:number){
+    this.goToVersion.emit(id);
+  }
 }

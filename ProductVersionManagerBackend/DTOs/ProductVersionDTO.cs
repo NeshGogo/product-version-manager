@@ -16,6 +16,5 @@ namespace ProductVersionManagerBackend.DTOs
         public DateTime Date { get; set; }
         public DateTime ModificationDate { get; set; }
         public int ProductId { get; set; }
-        public ProductDTO Product { get; set; }
     }
 }
