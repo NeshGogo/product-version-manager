@@ -35,18 +35,18 @@
   </div>
   <nav aria-label="Page navigation">
     <ul class="pagination">
-      <li class="page-item ">
+      <li class="page-item pointer-element">
         <a class="page-link " (click)="previousPage()" aria-label="Previous">
           <span aria-hidden="true">&laquo;</span>
         </a>
       </li>
       <li
-        [class]="pagination.page === item ? 'page-item active' : 'page-item'"
+        [class]="pagination.page === item ? 'page-item pointer-element active' : 'page-item pointer-element'"
         *ngFor="let item of pagination.pages"
       >
         <a class="page-link" (click)="goToPage(item)">{{ item }}</a>
       </li>
-      <li class="page-item">
+      <li class="page-item pointer-element">
         <a class="page-link" (click)="nextPage()" aria-label="Next">
           <span aria-hidden="true">&raquo;</span>
         </a>

@@ -50,7 +50,8 @@ namespace ProductVersionManagerBackend.Services.Products
         public IQueryable<Product> Filter(string value)
         {
             return repository.Get()
-                 .Where(p =>
+                .Where(p => p.Deleted == false)
+                .Where(p =>
                      p.Name.Contains(value) ||
                      p.Brand.Contains(value) ||
                      p.Seller.Contains(value) ||
