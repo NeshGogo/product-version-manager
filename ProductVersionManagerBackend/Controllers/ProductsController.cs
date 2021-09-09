@@ -5,6 +5,7 @@ using ProductVersionManagerBackend.DTOs;
 using ProductVersionManagerBackend.Entities;
 using ProductVersionManagerBackend.Services;
 using ProductVersionManagerBackend.Services.Products;
+using ProductVersionManagerBackend.Services.ProductVersions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,10 +18,14 @@ namespace ProductVersionManagerBackend.Controllers
     public class ProductsController : CustomControllerBase<Product>
     {
         private readonly IProductService service;
+        private readonly IProductVersionService productVersionService;
+        private readonly IMapper mapper;
 
-        public ProductsController(IProductService service, IMapper mapper) : base(service, mapper)
+        public ProductsController(IProductService service, IProductVersionService productVersionService, IMapper mapper) : base(service, mapper)
         {
             this.service = service;
+            this.productVersionService = productVersionService;
+            this.mapper = mapper;
         }
 
       
@@ -47,6 +52,15 @@ namespace ProductVersionManagerBackend.Controllers
         public async Task<ActionResult> Post(CreateProductDTO createProduct)
         {
             return await Post<ProductDTO, CreateProductDTO>(createProduct, "GetProduct");
+        }
+
+        [HttpPost("ApplyVersion")]
+        public async Task<ActionResult> ApplyVersion([FromBody] ApplyVersionDTO applyVersion)
+        {
+            var productVersion = await productVersionService
+                .GetVersionOfProductAsync(applyVersion.ProductId, applyVersion.Version);
+            var createProduct = mapper.Map<CreateProductDTO>(productVersion);
+            return await Put<CreateProductDTO>(applyVersion.ProductId, createProduct);
         }
 
         [HttpPut("{id:int}")]

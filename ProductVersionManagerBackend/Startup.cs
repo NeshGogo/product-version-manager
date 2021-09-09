@@ -17,6 +17,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ProductVersionManagerBackend.Helpers;
+using ProductVersionManagerBackend.Data.ProductVersions;
+using ProductVersionManagerBackend.Services.ProductVersions;
 
 namespace ProductVersionManagerBackend
 {
@@ -42,6 +44,9 @@ namespace ProductVersionManagerBackend
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IProductService, ProductService>();
 
+            services.AddScoped<IProductVersionRepository, ProductVersionRepository>();
+            services.AddScoped<IProductVersionService, ProductVersionService>();
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -54,7 +59,10 @@ namespace ProductVersionManagerBackend
         {
             if (env.IsDevelopment())
             {
-                app.UseCors(c => c.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().WithExposedHeaders(new string[] { "pages" }) );
+                app.UseCors(c => c.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .WithExposedHeaders(new string[] { "pages" }) );
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ProductVersionManagerBackend v1"));

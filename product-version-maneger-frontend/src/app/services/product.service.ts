@@ -4,6 +4,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { Product } from '../models/product';
 import { Pagination } from '../models/pagination';
+import { ApplyVersion } from '../models/apply-version';
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +32,9 @@ export class ProductService {
 
   filter(value: string, pagination?:Pagination): Observable<HttpResponse<Product[]>>{
     return this.http.get<Product[]>(`${this.URL}/${value}?page=${pagination?.page}`, {observe: 'response'});
+  }
+
+  applyVersion(applyVersion: ApplyVersion){
+    return this.http.post<Product>(`${this.URL}/applyVersion`, applyVersion);
   }
 }

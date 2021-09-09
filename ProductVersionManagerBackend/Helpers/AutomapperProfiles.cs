@@ -20,6 +20,7 @@ namespace ProductVersionManagerBackend.Helpers
                 .ForMember(pv => pv.Id, options => options.Ignore());
             CreateMap<ProductVersion, Product>()
                 .ForMember(pv => pv.Id, options => options.MapFrom(p => p.ProductId));
+            CreateMap<ProductVersion, CreateProductDTO>();
         }
     }
 }

@@ -5,7 +5,7 @@
         <h4>Producto Actual</h4>
         <a
           type="button"
-          class="btn btn-primary"
+          class="btn btn-primary btn-sm"
           [routerLink]="['/products/create/', productId]"
         >
           <svg
@@ -34,7 +34,7 @@
       <div class="mt-4">
         <div class="row">
           <div class="col mb-3" *ngFor="let product of product?.productVersions">
-            <app-product-item [product]="product" [detailMode]="true"></app-product-item>
+            <app-product-item [product]="product" [detailMode]="true" (goToVersion)="goToVersion($event)"></app-product-item>
           </div>
         </div>
       </div>
