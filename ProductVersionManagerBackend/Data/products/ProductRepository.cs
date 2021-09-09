@@ -22,7 +22,9 @@ namespace ProductVersionManagerBackend.Data.products
         {
             try
             {
+                var lastVersion = context.ProductVersions.LastOrDefault(v => v.ProductId == product.Id)?.Version;
                 var productVersion = mapper.Map<ProductVersion>(product);
+                productVersion.Version = lastVersion != null? lastVersion.Value + 1 : 1;
                 await context.ProductVersions.AddAsync(productVersion);
                 context.Products.Update(product);
                 await context.SaveChangesAsync();

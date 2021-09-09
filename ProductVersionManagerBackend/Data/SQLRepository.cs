@@ -50,7 +50,7 @@ namespace ProductVersionManagerBackend.Data
             return Entities;
         }
 
-        public async Task<T> GetAsync(int id)
+        public virtual async Task<T> GetAsync(int id)
         {
             return await Entities.FirstOrDefaultAsync(t => t.Id == id);
         }

@@ -5,4 +5,5 @@ export interface Product{
   price: number;
   seller: string;
   date?: Date;
+  productVersions?: []
 }

@@ -6,6 +6,6 @@
     <h5 class="card-title text-center">{{product?.name}}, {{product?.brand}}</h5>
     <p class="card-text m-0">Fecha: {{product?.date | date}}</p>
     <p class="card-text mb-4">Vendedor: {{product?.seller}}</p>
-    <a [routerLink]="['/products/detail',product?.id]" class="btn btn-primary btn-sm w-100">Ver detalle</a>
+    <a [routerLink]="['/products/detail',product?.id]" class="btn btn-primary btn-sm w-100" *ngIf="!detailMode">Ver detalle</a>
   </div>
 </div>

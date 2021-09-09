@@ -17,6 +17,10 @@ export class ProductService {
     return this.http.get<Product[]>(`${this.URL}?page=${pagination?.page}`, {observe: 'response'});
   }
 
+  geById(id:number): Observable<Product> {
+    return this.http.get<Product>(`${this.URL}/${id}`);
+  }
+
   set(product: Product): Observable<Product> {
     return this.http.post<Product>(this.URL, product);
   }
