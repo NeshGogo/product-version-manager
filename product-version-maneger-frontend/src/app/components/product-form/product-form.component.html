@@ -1,35 +1,38 @@
 
 <section class="mt-2" *ngIf="showAlert">
-  <div class="alert alert-success" role="alert">
+  <div i18n  class="alert alert-success" role="alert">
     {{successMessage}}
   </div>
 </section>
 
 <section class="card card-body mt-4">
-  <h2 class="text-center mb-4">Registrar Usuario</h2>
+  <h2 class="text-center mb-4" i18n>Registrar Usuario</h2>
   <form [formGroup]="form" (ngSubmit)="send($event)">
     <div class="row mb-3">
       <div class="col-sm-6 mb-2">
-        <label>Nombre</label>
+        <label i18n>Nombre</label>
         <input
           type="text"
           formControlName="name"
           class="form-control"
           placeholder="Nombre"
+          i18n
+          i18n-placeholder
         />
-        <p *ngIf="nameField?.touched && nameField?.hasError('required')" class="text-danger">
+        <p i18n *ngIf="nameField?.touched && nameField?.hasError('required')" class="text-danger">
           * Este campo es requerido.
         </p>
       </div>
       <div class="col-sm-6">
-        <label>Marca</label>
+        <label i18n>Marca</label>
         <input
           type="text"
           formControlName="brand"
           class="form-control"
           placeholder="Ingresa la marca"
+          i18n-placeholder
         />
-        <p *ngIf="brandField?.touched && brandField?.hasError('required')" class="text-danger">
+        <p i18n *ngIf="brandField?.touched && brandField?.hasError('required')" class="text-danger">
           * Este campo es requerido.
         </p>
       </div>
@@ -37,32 +40,34 @@
 
     <div class="row mb-3">
       <div class="col-sm-6 mb-2">
-        <label>Vendedor</label>
+        <label i18n>Vendedor</label>
         <input
           type="text"
           formControlName="seller"
           class="form-control"
-          placeholder="Nombre"
+          placeholder="Vendedor"
+          i18n-placeholder
         />
-        <p *ngIf="sellerField?.touched && sellerField?.hasError('required')" class="text-danger">
+        <p i18n *ngIf="sellerField?.touched && sellerField?.hasError('required')" class="text-danger">
           * Este campo es requerido.
         </p>
       </div>
       <div class="col-sm-6">
-        <label>Precio</label>
+        <label i18n>Precio</label>
         <input
           type="number"
           formControlName="price"
           class="form-control"
           placeholder="Ingresa la marca"
+          i18n-placeholder
         />
-        <p *ngIf="priceField?.touched && priceField?.hasError('required')" class="text-danger">
+        <p i18n *ngIf="priceField?.touched && priceField?.hasError('required')" class="text-danger">
           * Este campo es requerido.
         </p>
       </div>
     </div>
     <div class="mt-5 d-grid gap-2 col-6 mx-auto">
-      <button type="submit" class="btn btn-success w-70 bt" [disabled]="form.invalid">Enviar</button>
+      <button i18n type="submit" class="btn btn-success w-70 bt" [disabled]="form.invalid">Enviar</button>
     </div>
   </form>
 </section>

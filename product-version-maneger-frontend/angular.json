@@ -5,6 +5,12 @@
   "projects": {
     "product-version-maneger-frontend": {
       "projectType": "application",
+      "i18n": {
+        "sourceLocale": "es",
+        "locales": {
+          "en": "src/i18n/messages.xlf"
+        }
+      },
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
@@ -20,7 +26,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/product-version-maneger-frontend",
+            "outputPath": "dist/",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -36,6 +42,9 @@
             "scripts": []
           },
           "configurations": {
+            "en": {
+              "localize": ["en"]
+            },
             "production": {
               "budgets": [
                 {
@@ -73,6 +82,9 @@
           "configurations": {
             "production": {
               "browserTarget": "product-version-maneger-frontend:build:production"
+            },
+            "en": {
+              "browserTarget": "product-version-maneger-frontend:build:en"
             },
             "development": {
               "browserTarget": "product-version-maneger-frontend:build:development"

@@ -13,14 +13,15 @@
       >
       {{ product?.name }}, {{ product?.brand }} {{ product?.price | currency }}
     </h5>
-    <p class="card-text m-0">Fecha: {{ product?.date | date }}</p>
-    <p class="card-text mb-4">Vendedor: {{ product?.seller }}</p>
+    <p class="card-text m-0" i18n>Fecha: {{ product?.date | date:'dd/mm/yyyy' }}</p>
+    <p class="card-text mb-4" i18n>Vendedor: {{ product?.seller }}</p>
     <a
       [routerLink]="['/products/detail', product?.id]"
       class="btn btn-primary btn-sm w-100"
       *ngIf="!detailMode"
+      i18n
       >Ver detalle</a
     >
-    <button *ngIf="detailMode && product?.version !== undefined" type="button" class="btn btn-warning btn-sm w-100" (click)="sendToVersion(product?.version || 0)">Obtener</button>
+    <button *ngIf="detailMode && product?.version !== undefined" type="button" class="btn btn-warning btn-sm w-100" (click)="sendToVersion(product?.version || 0)" i18n>Obtener</button>
   </div>
 </div>
