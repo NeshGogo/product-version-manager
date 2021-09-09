@@ -22,6 +22,7 @@ namespace ProductVersionManagerBackend.Data.products
         public override async Task<Product> GetAsync(int id)
         {
             return await context.Products
+                .Where(p => p.Deleted == false)
                 .Include(p => p.ProductVersions)
                 .FirstOrDefaultAsync(p => p.Id == id);
         }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApplyVersion } from 'src/app/models/apply-version';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
@@ -15,7 +15,8 @@ export class ProductDetailComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -46,6 +47,14 @@ export class ProductDetailComponent implements OnInit {
     .applyVersion(applyVersion)
     .subscribe(product => this.fetchData());
 
+  }
+
+  delete(){
+    this.productService.delete(this.productId)
+    .subscribe(response => {
+      console.log( response.ok);
+      this.router.navigate(['/products']);
+    })
   }
 
 }

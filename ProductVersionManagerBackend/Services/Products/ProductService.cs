@@ -29,12 +29,12 @@ namespace ProductVersionManagerBackend.Services.Products
 
         public async Task<List<Product>> GetAsync()
         {
-            return await repository.Get().ToListAsync();
+            return await repository.Get().Where(p => p.Deleted == false).ToListAsync();
         }
 
         public IQueryable<Product> Get()
         {
-            return repository.Get();
+            return repository.Get().Where(p => p.Deleted == false);
         }
 
         public async Task<Product> GetAsync(int id)

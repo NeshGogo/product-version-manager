@@ -37,4 +37,8 @@ export class ProductService {
   applyVersion(applyVersion: ApplyVersion){
     return this.http.post<Product>(`${this.URL}/applyVersion`, applyVersion);
   }
+
+  delete(id: number) {
+    return this.http.delete(`${this.URL}/${id}`, {observe: 'response'});
+  }
 }

@@ -21,6 +21,6 @@
       *ngIf="!detailMode"
       >Ver detalle</a
     >
-    <button *ngIf="product?.version !== undefined" type="button" class="btn btn-warning btn-sm w-100" (click)="sendToVersion(product?.version || 0)">Obtener</button>
+    <button *ngIf="detailMode && product?.version !== undefined" type="button" class="btn btn-warning btn-sm w-100" (click)="sendToVersion(product?.version || 0)">Obtener</button>
   </div>
 </div>
