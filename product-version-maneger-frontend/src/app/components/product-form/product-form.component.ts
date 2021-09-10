@@ -15,7 +15,6 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./product-form.component.scss'],
 })
 export class ProductFormComponent implements OnInit {
-  successMessage = 'Registrado exitosamente!';
   showAlert = false;
   productId: number | undefined;
   form: FormGroup = this.formBuilder.group({

@@ -7,6 +7,7 @@ import { Product } from 'src/app/models/product';
   styleUrls: ['./product-item.component.scss']
 })
 export class ProductItemComponent implements OnInit {
+  @Input()isVersion: boolean = false;
   @Input()product: Product | undefined;
   @Input()detailMode: boolean = false;
   @Output()goToVersion = new EventEmitter<number>();

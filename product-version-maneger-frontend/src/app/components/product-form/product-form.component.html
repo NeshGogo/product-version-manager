@@ -1,12 +1,17 @@
 
 <section class="mt-2" *ngIf="showAlert">
-  <div i18n  class="alert alert-success" role="alert">
-    {{successMessage}}
+  <div class="alert alert-success" role="alert">
+   <span *ngIf="!productId" i18n>Registrado exitosamente!</span>
+   <span *ngIf="productId" i18n>Actualizado exitosamente!</span>
   </div>
 </section>
 
 <section class="card card-body mt-4">
-  <h2 class="text-center mb-4" i18n>Registrar Usuario</h2>
+  <h2 class="text-center mb-4">
+    <span *ngIf="!productId" i18n>Registrar Producto</span>
+    <span *ngIf="productId" i18n>Actualizar Producto</span>
+  </h2>
+  <h2 class="text-center mb-4" i18n *ngIf="productId"></h2>
   <form [formGroup]="form" (ngSubmit)="send($event)">
     <div class="row mb-3">
       <div class="col-sm-6 mb-2">

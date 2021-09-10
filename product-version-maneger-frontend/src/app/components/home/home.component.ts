@@ -6,10 +6,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
+  toggleFlag = false;
+  localesList = [
+      { code: 'es', label: 'Español' },
+      { code: 'en', label: 'English' },     
+    ];
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  dropdown(){
+    this.toggleFlag = !this.toggleFlag;
   }
 
 }

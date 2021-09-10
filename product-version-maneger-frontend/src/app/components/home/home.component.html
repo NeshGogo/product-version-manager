@@ -10,6 +10,12 @@
       >Productos</a
     >
   </li>
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" (click)="dropdown()" role="button" i18n>Idioma</a>
+    <ul class="dropdown-menu" [ngClass]="{'show': toggleFlag}">
+      <li class="nav-item" *ngFor="let locale of localesList"><a class="nav-link" href="/{{locale.code}}/">{{locale.label}}</a></li>
+    </ul>
+  </li>
 </ul>
 <main class="container">
   <router-outlet></router-outlet>

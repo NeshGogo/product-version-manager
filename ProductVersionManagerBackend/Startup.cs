@@ -68,6 +68,13 @@ namespace ProductVersionManagerBackend
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ProductVersionManagerBackend v1"));
             }
 
+            app.UseCors(c => c.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .WithExposedHeaders(new string[] { "pages" }));
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ProductVersionManagerBackend v1"));
+
             app.UseHttpsRedirection();
 
             app.UseRouting();

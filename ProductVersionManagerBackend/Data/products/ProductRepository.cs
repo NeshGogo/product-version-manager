@@ -34,6 +34,7 @@ namespace ProductVersionManagerBackend.Data.products
                 var oldProduct = await context.Products
                     .AsNoTracking()
                     .FirstOrDefaultAsync(p => p.Id == product.Id);
+                product.Date = oldProduct.Date;
                 var lastVersion = context.ProductVersions
                     .OrderBy(v => v.Id)
                     .LastOrDefault(v => v.ProductId == product.Id)?.Version;

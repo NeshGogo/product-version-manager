@@ -1,14 +1,14 @@
 <div class="card" style="width: 18rem">
   <div class="text-center">
     <img
-      src="../../../assets/img/icons8-product-48.png"
+      src="./assets/img/icons8-product-48.png"
       class="img"
       alt="icon-product"
     />
   </div>
   <div class="card-body">
     <h5 class="card-title text-center">
-      <span *ngIf="product?.version !== undefined" class="text-warning"
+      <span *ngIf="isVersion" class="text-warning"
         >V{{ product?.version }},</span
       >
       {{ product?.name }}, {{ product?.brand }} {{ product?.price | currency }}
@@ -22,6 +22,6 @@
       i18n
       >Ver detalle</a
     >
-    <button *ngIf="detailMode && product?.version !== undefined" type="button" class="btn btn-warning btn-sm w-100" (click)="sendToVersion(product?.version || 0)" i18n>Obtener</button>
+    <button *ngIf="isVersion" type="button" class="btn btn-warning btn-sm w-100" (click)="sendToVersion(product?.version || 0)" i18n>Obtener</button>
   </div>
 </div>
